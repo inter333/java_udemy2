@@ -20,7 +20,6 @@ public class SalaryCalculator {
 
         BigDecimal totalSalary = payrollCalculation(actualWorkingMin);
 
-
         // 出力
         System.out.println("本日の給与は" + totalSalary +  "です。");
     }
@@ -47,20 +46,18 @@ public class SalaryCalculator {
         BigDecimal hourlyWage = new BigDecimal("900");
         BigDecimal overtimePayRate = new BigDecimal("1.25");
 
-
         if (actualWorkingMin > REGULAR_WORK_HOURS){
             BigDecimal normalWorkingHours = new BigDecimal(String.valueOf((REGULAR_WORK_HOURS)/ONE_HOUR));
             BigDecimal overtimeHours = new BigDecimal(String.valueOf((double) (actualWorkingMin - REGULAR_WORK_HOURS)/ONE_HOUR));
 
-
             BigDecimal nourmalSalary = (normalWorkingHours.multiply(hourlyWage));
             BigDecimal overtimeWorkSalary = ((overtimeHours.multiply(hourlyWage)).multiply(overtimePayRate)).setScale(0,RoundingMode.DOWN);
-            BigDecimal totalSalary = (nourmalSalary.add(overtimeWorkSalary));
-            return totalSalary;
+            BigDecimal salary = (nourmalSalary.add(overtimeWorkSalary));
+            return salary;
         } else {
             BigDecimal workingHours = new BigDecimal(String.valueOf((double) (actualWorkingMin)/ONE_HOUR));
-            BigDecimal totalSalary = (workingHours.multiply(hourlyWage)).setScale(0,RoundingMode.DOWN);
-            return totalSalary;
+            BigDecimal salary = (workingHours.multiply(hourlyWage)).setScale(0,RoundingMode.DOWN);
+            return salary;
         }
 
     }
